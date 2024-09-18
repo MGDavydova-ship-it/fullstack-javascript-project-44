@@ -1,9 +1,9 @@
 import readlineSync from 'readline-sync';
 
-function interact() {
+function sayHello() {
     console.log("Welcome to the Brain Games!");
     const name = readlineSync.question('May I have your name?');
     console.log(`Hello, ${name}`);
 }
 
-export default interact
+export default sayHello
