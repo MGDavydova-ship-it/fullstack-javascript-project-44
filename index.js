@@ -64,4 +64,22 @@ const playCalc = () => {
     return answerObj;
 };
 
+const playGcd = () => {
+    const randomNumber1 = Math.floor(Math.random() * (100 - 0 + 1)) + 0;
+    const randomNumber2 = Math.floor(Math.random() * (100 - 0 + 1)) + 0;
+
+    console.log(`Question: ${randomNumber1} ${randomNumber2}`);
+    const answerObj = {};
+    answerObj.answer = readlineSync.question("Your answer:");
+    answerObj.correctAnswer = gcd(randomNumber1, randomNumber2);
+    return answerObj;
+};
+
+const gcd = (a, b) => {
+    if (!b) {
+        return a;
+    }
+    return gcd(b, a % b);
+};
+
 export default playGame;
