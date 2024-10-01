@@ -1,18 +1,22 @@
 import readlineSync from 'readline-sync';
 
-const playEvenGame = () => {
+const playGame = (game) => {
     console.log("Welcome to the Brain Games!");
     const name = readlineSync.question('May I have your name?');
     console.log(`Hello, ${name}`);
-    console.log(`Answer "yes" if the number is even, otherwise answer "no".`);
+    let gameRule;
+    if (game === "isEven") {
+        gameRule = `Answer "yes" if the number is even, otherwise answer "no".`
+    }
+    console.log(gameRule);
     let n = 0;
     while (n < 3) {
-        const randomNumber = Math.floor(Math.random() * (10000 - 0 + 1)) + 0;
-        console.log(`Question: ${randomNumber}`);
-        const answer = readlineSync.question('Your answer:');
-        const correctAnswer = randomNumber % 2 === 0 ? "yes" : "no";
-        if (answer !== correctAnswer) {
-            console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.
+        let answerObj;
+        if (game === "isEven") {
+          answerObj = playEven()
+        }
+        if (answerObj.answer !== answerObj.correctAnswer) {
+            console.log(`'${answerObj.answer}' is wrong answer ;(. Correct answer was '${answerObj.correctAnswer}'.
 Let's try again, ${name}!`
             );
             n = 0;
@@ -22,6 +26,20 @@ Let's try again, ${name}!`
         }
     }
     console.log(`Congratulations, ${name}!`)
+}
+
+
+const playEven = () => {
+    const randomNumber = Math.floor(Math.random() * (10000 - 0 + 1)) + 0;
+    console.log(`Question: ${randomNumber}`);
+    const answerObj = {}
+    answerObj.answer = readlineSync.question('Your answer:');
+    answerObj.correctAnswer = randomNumber % 2 === 0 ? "yes" : "no";
+    return answerObj
+}
+
+const playEvenGame = () => {
+    playGame("isEven")
 }
 
 export default playEvenGame
