@@ -25,7 +25,7 @@ const playGame = (game) => {
             console.log(`'${answerObj.answer}' is wrong answer ;(. Correct answer was '${answerObj.correctAnswer}'.
 Let's try again, ${name}!`
             );
-            n = 0;
+            return;
         } else {
             console.log("Correct!");
             n++;
