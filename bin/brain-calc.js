@@ -2,4 +2,4 @@
 
 import playGame from '../index.js'
 
-playGame("isEven")
+playGame("calculator")
