@@ -13,6 +13,8 @@ const playGame = (game) => {
         gameRule = `Find the greatest common divisor of given numbers.`;
     } else if (game === "progression") {
         gameRule = `What number is missing in the progression?`;
+    } else if (game === "prime") {
+        gameRule = `Answer "yes" if given number is prime. Otherwise answer "no".`;
     }
     console.log(gameRule);
     let n = 0;
@@ -26,6 +28,8 @@ const playGame = (game) => {
             answerObj = playGcd();
         } else if (game === "progression") {
             answerObj = playProgression();
+        } else if (game === "prime") {
+            answerObj = playPrime();
         }
         if (answerObj.answer != answerObj.correctAnswer) {
             console.log(`'${answerObj.answer}' is wrong answer ;(. Correct answer was '${answerObj.correctAnswer}'.
@@ -125,6 +129,28 @@ const playProgression = () => {
 
 const findNthNumber = (firstNumber, difference, n) => {
     return firstNumber + (n - 1) * difference;
-}
+};
+
+const playPrime = () => {
+    const randomNumber = Math.floor(Math.random() * (1000 - 0 + 1)) + 0;
+    console.log(`Question: ${randomNumber}`);
+    const answerObj = {};
+    answerObj.answer = readlineSync.question("Your answer:");
+    answerObj.correctAnswer = isPrime(randomNumber) ? "yes" : "no";
+    return answerObj;
+};
+
+const isPrime = (number) => {
+    if (number === 1) {
+        return true;
+    } else if (number > 1) {
+        for (let i = 2; i <= number / 2; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
 
 export default playGame;
